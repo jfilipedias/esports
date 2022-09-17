@@ -1,22 +1,17 @@
 import { MagnifyingGlassPlus } from "phosphor-react";
 
 import logoImg from "./assets/logo-esports.svg";
+import { GameBanner, GameBannerProps } from "./components/GameBanner";
 
 import "./styles/main.css";
 
-type GameAnnouncement = {
-  image: string;
-  name: string;
-  count: number;
-};
-
-const gamesAnnouncements: GameAnnouncement[] = [
-  { image: "/game-1.png", name: "League of Legends", count: 4 },
-  { image: "/game-2.png", name: "Apex Legends", count: 4 },
-  { image: "/game-3.png", name: "Counter Strike", count: 4 },
-  { image: "/game-4.png", name: "World of Warcraft", count: 4 },
-  { image: "/game-5.png", name: "Dota 2", count: 4 },
-  { image: "/game-6.png", name: "Fortnite", count: 4 },
+const gameBanners: GameBannerProps[] = [
+  { image: "/game-1.png", name: "League of Legends", ads: 4 },
+  { image: "/game-2.png", name: "Apex Legends", ads: 4 },
+  { image: "/game-3.png", name: "Counter Strike", ads: 4 },
+  { image: "/game-4.png", name: "World of Warcraft", ads: 4 },
+  { image: "/game-5.png", name: "Dota 2", ads: 4 },
+  { image: "/game-6.png", name: "Fortnite", ads: 4 },
 ];
 
 function App() {
@@ -33,24 +28,9 @@ function App() {
       </h1>
 
       <div className="grid grid-cols-6 gap-6 mt-16">
-        {gamesAnnouncements.map(({ image, name, count }, index) => {
-          return (
-            <a
-              href=""
-              key={index}
-              className="relative rounded-lg overflow-hidden"
-            >
-              <img src={image} alt={name} />
-
-              <div className="w-full pt-16 pb-4 px-4 bg-game-gradient absolute bottom-0 left-0 right-0">
-                <strong className="text-white block">{name}</strong>
-                <span className="text-zinc-300 text-sm block">
-                  {count === 1 ? "1 anúncio" : `${count} anúncios`}
-                </span>
-              </div>
-            </a>
-          );
-        })}
+        {gameBanners.map((gameBanner) =>
+          <GameBanner key={gameBanner.name} {...gameBanner} />
+        )}
       </div>
 
       <div className="self-stretch bg-nlw-gradient pt-1 mt-8 rounded-lg overflow-hidden">
