@@ -12,6 +12,20 @@ An project to match duo to eSports.
 - [Prisma](https://prisma.io/)
 - [SQlite](https://sqlite.org/)
 
+## Getting Started
+
+Install de dependencies on `mobile`, `server` and `web` applications:
+
+```sh
+npm install
+```
+
+Create a `.env` file on `server` application root:
+
+```
+DATABASE_URL="file:../database/db.sqlite"
+```
+
 ## License
 
 This project is licensed under the MIT. Consult the [LICENSE](LICENSE) for more information.
