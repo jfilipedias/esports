@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
+import * as Dialog from '@radix-ui/react-dialog'
 
-import { CreateAdBanner } from "./components/CreateAdBanner";
-import { GameBanner } from "./components/GameBanner";
-import logoImg from "./assets/logo-esports.svg";
+import { CreateAdBanner } from './components/CreateAdBanner'
+import { GameBanner } from './components/GameBanner'
+import logoImg from './assets/logo-esports.svg'
 
-import "./styles/main.css";
+import './styles/main.css'
 
 interface Game {
   id: string
@@ -20,7 +21,7 @@ function App() {
     useState<Game[]>([])
 
   useEffect(() => {
-    fetch("http://localhost:3333/games")
+    fetch('http://localhost:3333/games')
       .then(response => response.json())
       .then(data => setGames(data))
   }, [])
@@ -43,7 +44,21 @@ function App() {
         )}
       </div>
 
-      <CreateAdBanner />
+      <Dialog.Root>
+        <CreateAdBanner />
+
+        <Dialog.Portal>
+          <Dialog.Overlay className="bg-black/60 inset-0 fixed"/>
+
+          <Dialog.Content className="fixed bg-[#2A2634]">
+            <Dialog.Title>Publique um anúncio</Dialog.Title>
+
+            <Dialog.Content>
+              asdadasd
+            </Dialog.Content>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
     </div>
   );
 }
