@@ -26,6 +26,12 @@ Create a `.env` file on `server` application root:
 DATABASE_URL="file:../database/db.sqlite"
 ```
 
+Load the .env variables on prisma:
+
+```sh
+npx prisma generate
+```
+
 ## License
 
 This project is licensed under the MIT. Consult the [LICENSE](LICENSE) for more information.
