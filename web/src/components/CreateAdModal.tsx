@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { CaretDown, Check, GameController } from "phosphor-react";
 
 import * as Checkbox from "@radix-ui/react-checkbox";
@@ -5,8 +6,17 @@ import * as Dialog from "@radix-ui/react-dialog";
 import * as Select from "@radix-ui/react-select";
 
 import { Input } from "./Form/Input";
+import { Game } from "../App";
 
 export function CreateAdModal() {
+  const [games, setGames] = useState<Game[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3333/games")
+      .then((response) => response.json())
+      .then((data) => setGames(data));
+  }, []);
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
@@ -23,14 +33,31 @@ export function CreateAdModal() {
             </label>
 
             <Select.Root>
-              <Select.Trigger className="flex items-center justify-between bg-zinc-900 px-4 py-3 rounded text-sm text-zinc-500">
+              <Select.Trigger className="flex items-center justify-between bg-zinc-900 px-4 py-3 rounded text-sm radix-placeholder:text-zinc-500">
                 <Select.Value placeholder="Selecione o game que deseja jogar" />
                 <Select.Icon>
-                  <CaretDown className="w-6 h-6 text-zinc-400" />
+                  <CaretDown className="w-6 h-6 text-zinc-500" />
                 </Select.Icon>
               </Select.Trigger>
 
-              <Select.Content></Select.Content>
+              <Select.Portal>
+                <Select.Content>
+                  <Select.Viewport className="gap-2 bg-zinc-900 px-2 py-3 rounded">
+                    {games.map((game) => (
+                      <Select.Item
+                        key={game.id}
+                        className="flex items-center px-8 py-2 rounded text-white hover:bg-zinc-800"
+                        value={game.id}
+                      >
+                        <Select.ItemIndicator className="absolute left-4">
+                          <Check className="w-4 h-4" />
+                        </Select.ItemIndicator>
+                        <Select.ItemText>{game.title}</Select.ItemText>
+                      </Select.Item>
+                    ))}
+                  </Select.Viewport>
+                </Select.Content>
+              </Select.Portal>
             </Select.Root>
           </div>
 

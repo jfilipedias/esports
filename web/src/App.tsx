@@ -3,14 +3,13 @@ import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
 import { CreateAdBanner } from "./components/CreateAdBanner";
+import { CreateAdModal } from "./components/CreateAdModal";
 import { GameBanner } from "./components/GameBanner";
 import logoImg from "./assets/logo-esports.svg";
 
 import "./styles/main.css";
-import { Input } from "./components/Form/Input";
-import { CreateAdModal } from "./components/CreateAdModal";
 
-interface Game {
+export interface Game {
   id: string;
   title: string;
   bannerUrl: string;
