@@ -1,7 +1,8 @@
-import { Check, GameController } from "phosphor-react";
+import { CaretDown, Check, GameController } from "phosphor-react";
 
-import * as Dialog from "@radix-ui/react-dialog";
 import * as Checkbox from "@radix-ui/react-checkbox";
+import * as Dialog from "@radix-ui/react-dialog";
+import * as Select from "@radix-ui/react-select";
 
 import { Input } from "./Form/Input";
 
@@ -21,7 +22,16 @@ export function CreateAdModal() {
               Qual o game?
             </label>
 
-            <Input id="game" placeholder="Selecione o game que deseja jogar" />
+            <Select.Root>
+              <Select.Trigger className="flex items-center justify-between bg-zinc-900 px-4 py-3 rounded text-sm text-zinc-500">
+                <Select.Value placeholder="Selecione o game que deseja jogar" />
+                <Select.Icon>
+                  <CaretDown className="w-6 h-6 text-zinc-400" />
+                </Select.Icon>
+              </Select.Trigger>
+
+              <Select.Content></Select.Content>
+            </Select.Root>
           </div>
 
           <div className="flex flex-col gap-2">
