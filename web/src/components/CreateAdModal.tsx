@@ -4,6 +4,7 @@ import { CaretDown, Check, GameController } from "phosphor-react";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Select from "@radix-ui/react-select";
+import * as ToggleGroup from "@radix-ui/react-toggle-group";
 
 import { Input } from "./Form/Input";
 import { Game } from "../App";
@@ -86,35 +87,66 @@ export function CreateAdModal() {
             <div className="flex flex-col gap-2">
               <label htmlFor="weekDays">Quando costuma jogar?</label>
 
-              <div className="grid grid-cols-4 gap-1">
-                <button title="Domingo" className="w-9 h-9 rounded bg-zinc-900">
+              <ToggleGroup.Root
+                type="multiple"
+                className="grid grid-cols-4 gap-1"
+              >
+                <ToggleGroup.Item
+                  value="0"
+                  title="Domingo"
+                  className="w-9 h-9 rounded bg-zinc-900 radix-state-on:bg-violet-500"
+                >
                   D
-                </button>
+                </ToggleGroup.Item>
 
-                <button title="Segunda" className="w-9 h-9 rounded bg-zinc-900">
+                <ToggleGroup.Item
+                  value="1"
+                  title="Segunda"
+                  className="w-9 h-9 rounded bg-zinc-900 radix-state-on:bg-violet-500"
+                >
                   S
-                </button>
+                </ToggleGroup.Item>
 
-                <button title="Terça" className="w-9 h-9 rounded bg-zinc-900">
+                <ToggleGroup.Item
+                  value="2"
+                  title="Terça"
+                  className="w-9 h-9 rounded bg-zinc-900 radix-state-on:bg-violet-500"
+                >
                   T
-                </button>
+                </ToggleGroup.Item>
 
-                <button title="Quarta" className="w-9 h-9 rounded bg-zinc-900">
+                <ToggleGroup.Item
+                  value="3"
+                  title="Quarta"
+                  className="w-9 h-9 rounded bg-zinc-900 radix-state-on:bg-violet-500"
+                >
                   Q
-                </button>
+                </ToggleGroup.Item>
 
-                <button title="Quinta" className="w-9 h-9 rounded bg-zinc-900">
+                <ToggleGroup.Item
+                  value="4"
+                  title="Quinta"
+                  className="w-9 h-9 rounded bg-zinc-900 radix-state-on:bg-violet-500"
+                >
                   Q
-                </button>
+                </ToggleGroup.Item>
 
-                <button title="Sexta" className="w-9 h-9 rounded bg-zinc-900">
+                <ToggleGroup.Item
+                  value="5"
+                  title="Sexta"
+                  className="w-9 h-9 rounded bg-zinc-900 radix-state-on:bg-violet-500"
+                >
                   S
-                </button>
+                </ToggleGroup.Item>
 
-                <button title="Sábado" className="w-9 h-9 rounded bg-zinc-900">
+                <ToggleGroup.Item
+                  value="6"
+                  title="Sábado"
+                  className="w-9 h-9 rounded bg-zinc-900 radix-state-on:bg-violet-500"
+                >
                   S
-                </button>
-              </div>
+                </ToggleGroup.Item>
+              </ToggleGroup.Root>
             </div>
 
             <div className="flex flex-col gap-2 flex-1">
@@ -127,14 +159,14 @@ export function CreateAdModal() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 mt-2 text-sm">
+          <label className="flex items-center gap-2 mt-2 text-sm">
             <Checkbox.Root className="w-6 h-6 p-1 rounded bg-zinc-900">
               <Checkbox.Indicator>
                 <Check className="w-4 h-4 text-emerald-400" />
               </Checkbox.Indicator>
             </Checkbox.Root>
             Costumo me conectar ao chat de voz
-          </div>
+          </label>
 
           <footer className="flex justify-end gap-4 mt-4">
             <Dialog.Close className="bg-zinc-500 h-12 px-5 rounded-md font-semibold hover:bg-zinc-600">
