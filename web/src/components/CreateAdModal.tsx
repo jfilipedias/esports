@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { CaretDown, Check, GameController } from "phosphor-react";
 
 import * as Checkbox from "@radix-ui/react-checkbox";
@@ -18,6 +18,12 @@ export function CreateAdModal() {
       .then((data) => setGames(data));
   }, []);
 
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target as HTMLFormElement);
+  }
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
@@ -27,7 +33,7 @@ export function CreateAdModal() {
           Publique um anúncio
         </Dialog.Title>
 
-        <form className="flex flex-col gap-4 mt-8">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-8">
           <div className="flex flex-col gap-2">
             <label htmlFor="game" className="font-semibold">
               Qual o game?
@@ -64,13 +70,18 @@ export function CreateAdModal() {
 
           <div className="flex flex-col gap-2">
             <label htmlFor="name">Seu nome (ou nickname)</label>
-            <Input id="name" placeholder="Como te chamam dentro do game?" />
+            <Input
+              name="name"
+              id="name"
+              placeholder="Como te chamam dentro do game?"
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="yearsPlaying">Joga há quantos anos?</label>
               <Input
+                name="yearsPlaying"
                 id="yearsPlaying"
                 type="number"
                 placeholder="Tudo bem ser ZERO"
@@ -79,7 +90,7 @@ export function CreateAdModal() {
 
             <div className="flex flex-col gap-2">
               <label htmlFor="discord">Qual o seu discord?</label>
-              <Input id="discord" placeholder="Usuario#0000" />
+              <Input name="discord" id="discord" placeholder="Usuario#0000" />
             </div>
           </div>
 
@@ -153,8 +164,18 @@ export function CreateAdModal() {
               <label htmlFor="hourStart">Qual horário do dia?</label>
 
               <div className="grid grid-cols-2 gap-2">
-                <Input id="hourStart" type="time" placeholder="De" />
-                <Input id="hourEnd" type="time" placeholder="Até" />
+                <Input
+                  name="hourStart"
+                  id="hourStart"
+                  type="time"
+                  placeholder="De"
+                />
+                <Input
+                  name="hourEnd"
+                  id="hourEnd"
+                  type="time"
+                  placeholder="Até"
+                />
               </div>
             </div>
           </div>
