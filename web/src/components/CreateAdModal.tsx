@@ -12,6 +12,9 @@ import { Game } from "../App";
 
 export function CreateAdModal() {
   const [games, setGames] = useState<Game[]>([]);
+  const [selectedGame, setSelectedGame] = useState<string>();
+  const [weekDays, setWeekDays] = useState<string[]>([]);
+  const [useVoiceChannel, setUseVoiceChannel] = useState(false);
 
   useEffect(() => {
     axios("http://localhost:3333/games").then((response) =>
@@ -23,6 +26,24 @@ export function CreateAdModal() {
     event.preventDefault();
 
     const formData = new FormData(event.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+
+    try {
+      axios.post(`http://localhost:3333/games/${selectedGame}/ads`, {
+        name: data.name,
+        yearsPlaying: Number(data.yearsPlaying),
+        discord: data.discord,
+        weekDays: weekDays.map(Number),
+        hourStart: data.hourStart,
+        hourEnd: data.hourEnd,
+        useVoiceChannel,
+      });
+
+      alert("Anúncio criado com sucesso");
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao criar o anúncio");
+    }
   }
 
   return (
@@ -40,7 +61,7 @@ export function CreateAdModal() {
               Qual o game?
             </label>
 
-            <Select.Root>
+            <Select.Root value={selectedGame} onValueChange={setSelectedGame}>
               <Select.Trigger className="flex items-center justify-between bg-zinc-900 px-4 py-3 rounded text-sm radix-placeholder:text-zinc-500">
                 <Select.Value placeholder="Selecione o game que deseja jogar" />
                 <Select.Icon>
@@ -101,6 +122,8 @@ export function CreateAdModal() {
 
               <ToggleGroup.Root
                 type="multiple"
+                value={weekDays}
+                onValueChange={setWeekDays}
                 className="grid grid-cols-4 gap-1"
               >
                 <ToggleGroup.Item
@@ -182,7 +205,17 @@ export function CreateAdModal() {
           </div>
 
           <label className="flex items-center gap-2 mt-2 text-sm">
-            <Checkbox.Root className="w-6 h-6 p-1 rounded bg-zinc-900">
+            <Checkbox.Root
+              checked={useVoiceChannel}
+              onCheckedChange={(checked) => {
+                if (checked === "indeterminate" || !checked) {
+                  setUseVoiceChannel(false);
+                } else {
+                  setUseVoiceChannel(true);
+                }
+              }}
+              className="w-6 h-6 p-1 rounded bg-zinc-900"
+            >
               <Checkbox.Indicator>
                 <Check className="w-4 h-4 text-emerald-400" />
               </Checkbox.Indicator>

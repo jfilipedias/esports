@@ -32,6 +32,16 @@ Load the .env variables on prisma:
 npx prisma generate
 ```
 
+## Next Level
+
+### Web
+
+- [ ] Responsiveness
+- [ ] Games carrousel (Keen-Slider)
+- [ ] Feedback toast (Radix UI)
+- [ ] Form validation (React Hook Form, Zod)
+- [ ] SSO Auth
+
 ## License
 
 This project is licensed under the MIT. Consult the [LICENSE](LICENSE) for more information.
