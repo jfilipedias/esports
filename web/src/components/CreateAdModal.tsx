@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
+import axios from "axios";
 import { CaretDown, Check, GameController } from "phosphor-react";
 
 import * as Checkbox from "@radix-ui/react-checkbox";
@@ -13,9 +14,9 @@ export function CreateAdModal() {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3333/games")
-      .then((response) => response.json())
-      .then((data) => setGames(data));
+    axios("http://localhost:3333/games").then((response) =>
+      setGames(response.data)
+    );
   }, []);
 
   function handleSubmit(event: FormEvent) {
