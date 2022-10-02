@@ -1,6 +1,20 @@
 # eSports
 
-An project to match duo to eSports.
+<p align="center">
+  <img alt="Developer" src="https://img.shields.io/badge/developer-jfilipedias-blue">
+  <img alt="GitHub" src="https://img.shields.io/github/license/jfilipedias/feedget">
+</p>
+<br>
+
+eSports is a application developed on Next Level Week event hosted by [Rocketseat](https://rocketseat.com.br/).
+
+The project goal is to provide a to let the gamers find duos. The user can create a ad on the web application to be available and play someone in the community or search on the mobile app the available ads and match a new duo.
+
+The application has a backend in [NodeJS](https://nodejs.org/) with a [SQlite](https://sqlite.org/) database, a web frontend developed with [ReactJS](https://reactjs.org/) and a mobile app built with [React Native](https://reactnative.dev/) and [Expo](https://expo.dev/).
+
+<div align="center">
+  <img alt="eSports" title="eSports" src=".github/assets/cover.png" />
+</div>
 
 ## Technologies
 
