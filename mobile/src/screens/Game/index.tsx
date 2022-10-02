@@ -8,6 +8,7 @@ import { GameParams } from "../../@types/navigation";
 
 import { Background } from "../../components/Background";
 import { DuoCard, DuoCardProps } from "../../components/DuoCard";
+import { DuoMatch } from "../../components/DuoMatch";
 import { Heading } from "../../components/Heading";
 
 import logoImg from "../../assets/logo-nlw-esports.png";
@@ -25,6 +26,13 @@ export function Game() {
   }
 
   const [ads, setAds] = useState<DuoCardProps[]>([]);
+  const [discordDuoSelected, setDiscordDuoSelected] = useState("");
+
+  async function getDiscordUser(adsId: string) {
+    fetch(`http://192.168.1.109:3333/ads/${adsId}/discord`)
+      .then((response) => response.json())
+      .then((data) => setDiscordDuoSelected(data.discord));
+  }
 
   useEffect(() => {
     fetch(`http://192.168.1.109:3333/games/${game.id}/ads`)
@@ -61,10 +69,18 @@ export function Game() {
           style={styles.containerList}
           data={ads}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <DuoCard {...item} onConnect={() => {}} />}
+          renderItem={({ item }) => (
+            <DuoCard {...item} onConnect={() => getDiscordUser(item.id)} />
+          )}
           contentContainerStyle={styles.contentList}
           showsHorizontalScrollIndicator={false}
           horizontal
+        />
+
+        <DuoMatch
+          visible={discordDuoSelected.length > 0}
+          discord={discordDuoSelected}
+          onClose={() => setDiscordDuoSelected("")}
         />
       </SafeAreaView>
     </Background>

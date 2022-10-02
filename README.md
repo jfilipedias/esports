@@ -32,15 +32,20 @@ Load the .env variables on prisma:
 npx prisma generate
 ```
 
-## Next Level
+LogIn on expo:
 
-### Web
+```sh
+expo login
+```
+
+## Next Level
 
 - [ ] Responsiveness
 - [ ] Games carrousel (Keen-Slider)
 - [ ] Feedback toast (Radix UI)
 - [ ] Form validation (React Hook Form, Zod)
 - [ ] SSO Auth
+- [ ] Adds push notifications on back-end
 
 ## License
 
