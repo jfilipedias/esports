@@ -13,7 +13,7 @@ The project goal is to provide a to let the gamers find duos. The user can creat
 The application has a backend in [NodeJS](https://nodejs.org/) with a [SQlite](https://sqlite.org/) database, a web frontend developed with [ReactJS](https://reactjs.org/) and a mobile app built with [React Native](https://reactnative.dev/) and [Expo](https://expo.dev/).
 
 <div align="center">
-  <img alt="eSports" title="eSports" src=".github/assets/cover.png" />
+  <img alt="eSports" title="eSports" src="./docs/cover.png" />
 </div>
 
 ## Technologies
